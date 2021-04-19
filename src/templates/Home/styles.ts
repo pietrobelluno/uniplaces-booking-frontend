@@ -35,10 +35,15 @@ export const Container = styled.div`
   box-sizing: border-box;
   padding: 2.5%;
   position: relative;
+
   height: 100%;
+  .listTitle {
+    margin-bottom: 20px;
+  }
 
   .addProperty {
-    position: absolute;
+    position: fixed;
+    z-index: 999;
     bottom: 2.5%;
     gap: 5px;
     font-size: 1.2rem;

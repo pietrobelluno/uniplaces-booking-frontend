@@ -87,32 +87,37 @@ export default function Home() {
         isOpen={isCreateModalOpen}
       />
 
-      <S.PropertyWrapper>
-        {properties.map((prop) => (
-          <S.Property key={prop._id}>
-            <div>
-              <h2 className="title">{prop.name}</h2>
-              <div className="units">
-                {Object.entries(prop.units).map((entry, index) => {
-                  return (
-                    <p key={index} className="unit">
-                      {`${entry[1]}x ${entry[0]}`}
-                    </p>
-                  )
-                })}
-              </div>
-            </div>
-            <Button
-              colorScheme="red"
-              variant="solid"
-              size="sm"
-              onClick={() => handleModal(prop._id)}
-            >
-              <DeleteIcon w={4} h={4} />
-            </Button>
-          </S.Property>
-        ))}
-      </S.PropertyWrapper>
+      {(properties.length > 0 && (
+        <>
+          <h2 className="listTitle">Properties list:</h2>
+          <S.PropertyWrapper>
+            {properties.map((prop) => (
+              <S.Property key={prop._id}>
+                <div>
+                  <h2 className="title">{prop.name}</h2>
+                  <div className="units">
+                    {Object.entries(prop.units).map((entry, index) => {
+                      return (
+                        <p key={index} className="unit">
+                          {`${entry[1]}x ${entry[0]}`}
+                        </p>
+                      )
+                    })}
+                  </div>
+                </div>
+                <Button
+                  colorScheme="red"
+                  variant="solid"
+                  size="sm"
+                  onClick={() => handleModal(prop._id)}
+                >
+                  <DeleteIcon w={4} h={4} />
+                </Button>
+              </S.Property>
+            ))}
+          </S.PropertyWrapper>
+        </>
+      )) || <p>No properties have been added.</p>}
       <Dialog
         title="Delete Property"
         onClose={handleDelete}
